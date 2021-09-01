@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Pokemon</title>
+    </head>
+    <body>
+        <form class="pokeform">
+            <input type="text" placeholder="Input name..." name="searchText" id="searchText">
+            <button id="searchBtn">Search</button>
+        </form>
+        <div class="pokemon"></div>
+    </body>
+    <script>
+        const pokeSearch = (ev) => {
+            ev.preventDefault(); //prevent form submitting
+            const apiData = {
+                url: 'https://pokeapi.co/api/v2/',
+                type: 'pokemon',
+                nameid: document.getElementById('searchText').value
+            }
+
+            const {url, type, nameid} = apiData
+            const apiUrlBig = `${url}${type}/${nameid}/`
+
+            const apiUrl = apiUrlBig.toLowerCase(); //pokemon name needs to be lower case
+
+            fetch(apiUrl)
+                .then( (data) => data.json())
+                .then( (pokemon) => generateHtml(pokemon) )
+            
+            const generateHtml = (data) => {
+                console.log(data)
+                if(data.types.length == 1) {
+                    const html = `
+                        <div class="name">${data.name}</div>
+                        <img class="pokemon__image" src=${data.sprites.front_default}>
+                        <div class="details">
+                            <span>Height: <span class="details__num">${data.height}</span></span>
+                            <span>Weight: <span class="details__num">${data.weight}</span></span>
+                        </div>
+                        <div class="details">
+                            <span>Type/s: <span class="details__num">${data.types[0].type.name}</span></span> 
+                            <span>ID: <span class="details__num">${data.id}</span></span>    
+                        </div>
+                    `
+                    const pokemonDiv = document.querySelector('.pokemon')
+                    pokemonDiv.innerHTML = html
+                } else {
+                    const html = `
+                        <div class="name">${data.name}</div>
+                        <img class="pokemon__image" src=${data.sprites.front_default}>
+                        <div class="details">
+                            <span>Height: <span class="details__num">${data.height}</span></span>
+                            <span>Weight: <span class="details__num">${data.weight}</span></span>
+                        </div>
+                        <div class="details">
+                            <span>Type/s: <span class="details__num">${data.types[0].type.name}, ${data.types[1].type.name}</span></span>
+                            <span>ID: <span class="details__num">${data.id}</span></span>     
+                        </div>
+                    `
+                    const pokemonDiv = document.querySelector('.pokemon')
+                    pokemonDiv.innerHTML = html
+                }
+            };
+        };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('searchBtn').addEventListener('click', pokeSearch);
+        });
+    </script>
+</html>

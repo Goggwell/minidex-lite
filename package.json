@@ -1,0 +1,8 @@
+{
+  "name": "pokepi",
+  "version": "1.0.0",
+  "description": "PokeAPI Project",
+  "main": "main.js",
+  "author": "Samuel Yusuf",
+  "license": "MIT"
+}
