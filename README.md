@@ -16,8 +16,8 @@ View the pen [here](https://codepen.io/Goggwell/pen/ExXKwEp).
 Make a new directory, and clone this repo directly into said directory.
 
 ```bash
-cd [your desired destination]
 mkdir minidex
+cd minidex
 git clone https://github.com/Goggwell/minidex.git
 ```
 
