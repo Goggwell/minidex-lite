@@ -9,6 +9,8 @@ Reads:
 - Type/s
 - ID
 
+View the pen [here](https://codepen.io/Goggwell/pen/ExXKwEp).
+
 ## Installation
 
 Make a new directory, and clone this repo directly into said directory.
