@@ -1,4 +1,4 @@
-# Minidex
+# Minidex-Lite
 
 Small project using the [PokeAPI](https://pokeapi.co).
 
